@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name    = 'audited-activerecord'
   gem.version = '4.0.4'
 
-  gem.authors     = ['Brandon Keepers', 'Kenneth Kalmer', 'Daniel Morrison', 'Brian Ryckbost', 'Steve Richert', 'Ryan Glover']
+  gem.authors     = ['Brandon Keepers', 'Kenneth Kalmer', 'Daniel Morrison', 'Brian Ryckbost', 'Steve Richert', 'Ryan Glover', 'Caleb Smith']
   gem.email       = 'info@collectiveidea.com'
   gem.description = 'Log all changes to your ActiveRecord models'
   gem.summary     = gem.description
