@@ -3,6 +3,8 @@ Audited [![Build Status](https://secure.travis-ci.org/collectiveidea/audited.png
 
 **Audited** (previously acts_as_audited) is an ORM extension that logs all changes to your models. Audited also allows you to record who made those changes, save comments and associate models related to the changes. Audited works with Rails 3.
 
+## This version was forked to support rails 4 users who still use strong params - Caleb Smith
+
 ## Supported Rubies
 
 Audited supports and is [tested against](http://travis-ci.org/collectiveidea/audited) the following Ruby versions:
@@ -30,7 +32,7 @@ The installation process depends on what ORM your app is using.
 Add the appropriate gem to your Gemfile:
 
 ```ruby
-gem "audited-activerecord", "~> 3.0"
+gem 'audited-activerecord', :git => "https://github.com/calebsmith2013/audited.git"
 ```
 
 Then, from your Rails app directory, create the `audits` table:
@@ -47,14 +49,6 @@ If you're already using Audited (or acts_as_audited), your `audits` table may re
 ```bash
 $ rails generate audited:upgrade
 $ rake db:migrate
-```
-
-Upgrading will only make changes if changes are needed.
-
-### MongoMapper
-
-```ruby
-gem "audited-mongo_mapper", "~> 3.0"
 ```
 
 ## Usage
