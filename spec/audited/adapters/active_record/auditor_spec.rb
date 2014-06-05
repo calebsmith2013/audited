@@ -194,6 +194,17 @@ describe Audited::Auditor, :adapter => :active_record do
         on_create_update.destroy
       }.to_not change( Audited.audit_class, :count )
     end
+
+    it "should audit dependent destructions" do
+      owner = Models::ActiveRecord::Owner.create!
+      company = owner.companies.create!
+
+      expect {
+        owner.destroy
+      }.to change( Audited.audit_class, :count )
+
+      company.audits.map { |a| a.action }.should == ['create', 'destroy']
+    end
   end
 
   describe "associated with" do
@@ -341,9 +352,9 @@ describe Audited::Auditor, :adapter => :active_record do
     end
 
     it "should be able to get time for first revision" do
-      suspended_at = Time.zone.now
+      suspended_at = Time.now
       u = Models::ActiveRecord::User.create(:suspended_at => suspended_at)
-      u.revision(1).suspended_at.to_s.should == suspended_at.to_s
+      u.revision(1).suspended_at.should == suspended_at
     end
 
     it "should not raise an error when no previous audits exist" do

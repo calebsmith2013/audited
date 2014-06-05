@@ -1,6 +1,6 @@
 require File.expand_path('../mongo_mapper_spec_helper', __FILE__)
 
-class MongoAuditsController < ActionController::Base
+class AuditsController < ActionController::Base
   def audit
     @company = Models::MongoMapper::Company.create
     render :nothing => true
@@ -17,7 +17,7 @@ class MongoAuditsController < ActionController::Base
   attr_accessor :custom_user
 end
 
-describe MongoAuditsController, :adapter => :mongo_mapper do
+describe AuditsController, :adapter => :mongo_mapper do
   include RSpec::Rails::ControllerExampleGroup
 
   before(:each) do

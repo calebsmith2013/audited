@@ -3,8 +3,6 @@ Audited [![Build Status](https://secure.travis-ci.org/collectiveidea/audited.png
 
 **Audited** (previously acts_as_audited) is an ORM extension that logs all changes to your models. Audited also allows you to record who made those changes, save comments and associate models related to the changes. Audited works with Rails 3.
 
-## This version was forked to support rails 4 users who still use strong params - Caleb Smith
-
 ## Supported Rubies
 
 Audited supports and is [tested against](http://travis-ci.org/collectiveidea/audited) the following Ruby versions:
@@ -32,7 +30,7 @@ The installation process depends on what ORM your app is using.
 Add the appropriate gem to your Gemfile:
 
 ```ruby
-gem 'audited-activerecord', :git => "https://github.com/calebsmith2013/audited.git"
+gem "audited-activerecord", "~> 3.0"
 ```
 
 Then, from your Rails app directory, create the `audits` table:
@@ -49,6 +47,14 @@ If you're already using Audited (or acts_as_audited), your `audits` table may re
 ```bash
 $ rails generate audited:upgrade
 $ rake db:migrate
+```
+
+Upgrading will only make changes if changes are needed.
+
+### MongoMapper
+
+```ruby
+gem "audited-mongo_mapper", "~> 3.0"
 ```
 
 ## Usage
@@ -184,6 +190,37 @@ user = company.users.create!(:name => "Steve")
 user.update_attribute!(:name => "Steve Richert")
 user.audits.last.associated # => #<Company name: "Collective Idea">
 company.associated_audits.last.auditable # => #<User name: "Steve Richert">
+```
+
+### Disabling auditing
+
+If you want to disable auditing temporarily doing certain tasks, there are a few
+methods available.
+
+To disable auditing on a save:
+
+```ruby
+@user.save_wihtout_auditing
+```
+
+or:
+
+```ruby
+@user.without_auditing do
+  @user.save
+end
+```
+
+To disable auditing on a column:
+
+```ruby
+User.non_audited_columns = [:first_name, :last_name]
+```
+
+To disable auditing on an entire model:
+
+```ruby
+User.auditing_enabled = false
 ```
 
 ## Gotchas
