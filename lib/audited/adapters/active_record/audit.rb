@@ -17,6 +17,8 @@ module Audited
         include Audited::Audit
         include ActiveModel::Observing
 
+        attr_accessible :audited_changes, :comment 
+
 
         serialize :audited_changes
 
