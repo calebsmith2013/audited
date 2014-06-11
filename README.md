@@ -12,7 +12,9 @@ Audited supports and is [tested against](http://travis-ci.org/collectiveidea/aud
 * 1.9.3
 * Head
 
-Audited may work just fine with a Ruby version not listed above, but we can't guarantee that it will. If you'd like to maintain a Ruby that isn't listed, please let us know with a [pull request](https://github.com/collectiveidea/audited/pulls).
+Audited may work just fine with a Ruby version not listed above, but we can't guarantee that it will. If you'd like to maintain a Ruby that isn't listed, please let us know with a [pull request](https://github.com/calebsmith2013/audited/pulls).
+
+This fork fixes incompatibilities with protected atributes in rails4 :)
 
 ## Supported ORMs
 
@@ -30,7 +32,7 @@ The installation process depends on what ORM your app is using.
 Add the appropriate gem to your Gemfile:
 
 ```ruby
-gem "audited-activerecord", "~> 3.0"
+gem 'audited-activerecord', :git => "https://github.com/calebsmith2013/audited.git"
 ```
 
 Then, from your Rails app directory, create the `audits` table:
